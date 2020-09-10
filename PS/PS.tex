@@ -30,7 +30,7 @@
 
 \item We say that a random variable $X$ belongs to a Gaussian mixture model (GMM) if $X \sim \sum_{i=1}^K p_i \mathcal{N}(\mu_i,\sigma^2_i)$ where $p_i$ is the `mixing probability' for each of the $K$ constituent Gaussians, with $\sum_{i=1}^K p_i = 1; \forall i, 0 \leq p_i \leq 1$. To draw a sample from a GMM, we do the following: (1) One of the $K$ Gaussians is randomly chosen as per the PMF $\{p_1,p_2,...,p_K\}$ (thus, a Gaussian with a higher mixing probability has a higher chance of being picked). (2) Let the index of the chosen Gaussian be (say) $m$. Then, you draw the value from $\mathcal{N}(\mu_m,\sigma^2_m)$.  \\
 If $X$ belongs to a GMM as defined here, obtain expressions for $E(X), \textrm{Var}(X)$ and the MGF of $X$. \\
-Now consider a random variable of the form $X_i \sim \mathcal{N}(\mu_i,\sigma^2_i)$ for each $i \in \{1,2,...,K\}$. Define another random variable $Z = \sum_{i=1}^K p_i X_i$. Derive an expression for $E(Z), \textrm{Var}(Z)$ and the PDF, MGF of $Z$. \textsf{[2+2+2+2+2+2+3=15 points]} 
+Now consider a random variable of the form $X_i \sim \mathcal{N}(\mu_i,\sigma^2_i)$ for each $i \in \{1,2,...,K\}$. Define another random variable $Z = \sum_{i=1}^K p_i X_i$ \textbf{where $\{X_i\}_{i=1}^K$ are independent random variables}. Derive an expression for $E(Z), \textrm{Var}(Z)$ and the PDF, MGF of $Z$. \textsf{[2+2+2+2+2+2+3=15 points]} 
 
 \item Using Markov's inequality, prove the following one-sided version of Chebyshev's inequality for random variable $X$ with mean $\mu$ and variance $\sigma^2$:
 $P(X-\mu \geq \tau) \leq \dfrac{\sigma^2}{\sigma^2 + \tau^2}$ if $\tau > 0$, and $P(X-\mu \geq \tau) \geq 1-\dfrac{\sigma^2}{\sigma^2 + \tau^2}$ if $\tau < 0$. \textsf{[15 points]}
