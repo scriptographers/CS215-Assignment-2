@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{ulem}
 \usepackage{enumitem}
@@ -57,22 +58,22 @@ To determine cdf and pdf for $Y_1 = \text{max}(X_1, \dots, X_n)$
 \begin{equation*}
 \begin{split}
     F_{Y_1}(x) &= P(Y_1 \le x) \\
-        &= \prod_{i=1}^{n} P(X_i \le x) \hspace{3em} (\text{As $Y_1$ = max($X_i$s)}) \\
+        &= \prod_{i=1}^{n} P(X_i \le x) \hspace{3em} (\text{As $Y_1$ = max($X_i$s), $Y_1 \ge X_i \  \forall i$}) \\
         &= P(X \le x)^n \hspace{3em} (\text{$X_i$s are identically distributed}) \\
-    F_{Y_1}(x) &= F_X(x)^n \\
-    f_{Y_1}(x) &= n \cdot F_X(x)^{n-1} \cdot f_X(x) \hspace{3em} (\text{Differentiation by $x$}) \\
+    \Aboxed{F_{Y_1}(x) &= F_X(x)^n} \\
+    \Aboxed{f_{Y_1}(x) &= n \cdot F_X(x)^{n-1} \cdot f_X(x)} \hspace{3em} (\text{Differentiation w.r.t $x$}) \\
 \end{split}
 \end{equation*}
 
 To determine cdf and pdf for $Y_2 = \text{min}(X_1, \dots, X_n)$
 \begin{equation*}
 \begin{split}
-    F_{Y_2}(x) &= 1 - P(Y_2 \ge x) \\
-        &= 1 - \prod_{i=1}^{n} P(X_i \ge x) \hspace{3em} (\text{As $Y_1$ = min($X_i$s)}) \\
+    F_{Y_2}(x) &= P(Y_2 \le x) = 1 - P(Y_2 \ge x) \\
+        &= 1 - \prod_{i=1}^{n} P(X_i \ge x) \hspace{3em} (\text{As $Y_2$ = min($X_i$s), $Y_2 \le X_i \ \forall i$}) \\
         &= 1 - (P(X \ge x))^n \hspace{3em} (\text{$X_i$s are identically distributed}) \\
         &= 1 - (1 - P(X \le x))^n \\
-    F_{Y_2}(x) &= 1 - (1 - F_X(x))^n \\
-    f_{Y_2}(x) &= n \cdot (1 - F_X(x))^{n-1} \cdot f_X(x) \hspace{3em} (\text{Differentiation by $x$}) \\
+    \Aboxed{F_{Y_2}(x) &= 1 - (1 - F_X(x))^n} \\
+    \Aboxed{f_{Y_2}(x) &= n \cdot (1 - F_X(x))^{n-1} \cdot f_X(x)} \hspace{3em} (\text{Differentiation w.r.t $x$}) \\
 \end{split}
 \end{equation*}
 
@@ -353,23 +354,84 @@ $\frac{d}{dt} ((-(1 + \delta) t \mu)) + \mu (e^t - 1)) = (\mu e^t - (1 + \delta)
 
 
 
-
-
-
-
-
-
 \newpage
 \section*{Question 6}
 \addcontentsline{toc}{section}{Question 6}
 \setcounter{equation}{0}
 
+\subsection*{Instructions for running the code:}
+\begin{itemize}
+    \item After extracting submitted file, look for a directory named \texttt{code}. 
+    \item Within this, the code for this question is contained in a directory named \texttt{q6} while the 2 images are contained in the \texttt{img} directory.
+    \item Run the file \texttt{q6i.m} for plotting the given dependence measures between \texttt{T1.jpg} and \texttt{T2.jpg} and run \texttt{q6ii.m} for plotting the given dependence measures between \texttt{T1.jpg} and it's negative. 
+    \item Both of these will create two plots and save them at \texttt{./plots/}
+\end{itemize}
+\vspace{-1em}
+\subsection*{\Large For T1.jpg and T2.jpg}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.47]{correlation.jpg}
+    %\caption{Caption}
+    \label{q6ic}
+\end{figure}
+
+\subsubsection*{Comments:}
+\begin{itemize}
+    \item The correlation is the least when the 2 images are almost exactly aligned ($t_x \approx 0$).
+    \item As the two images don't seem to have any obvious relation w.r.t their intensity values, thus their correlation coefficient values are low.
+    \item As the shift starts to increase in either direction, the images start to become more positively correlated, with the correlation increasing approximately linearly.
+    \item The correlation is always positive in the given range of the shifts.
+\end{itemize}
+
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{qmi.jpg}
+    %\caption{Caption}
+    \label{q6ic}
+\end{figure}
+\subsubsection*{Comments:}
+\begin{itemize}
+    \item QMI essentially measures the ``dependance" of two random variables on each other. In our case, it is a measure of the mutual information contained between the 2 images.
+    \item In our case, the images seem to have no obvious relation  w.r.t their intensity values, thus their QMI values are low.
+    \item The QMI value reaches a maximum at $t_x=-1$ (This is also the point where the correlation coefficient is the least)
+    \item As we further increase the shift in either direction, the QMI value start decreasing approximately linearly.
+\end{itemize}
+
+\newpage
+\subsection*{\Large For T1.jpg and it's negative}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{correlation_negative.jpg}
+    %\caption{Caption}
+    \label{q6ic}
+\end{figure}
+
+\subsubsection*{Comments:}
+\begin{itemize}
+    \item As the second image is the negative of the first and the images are exactly aligned at $t_x = 0$, the correlation coefficient is exactly equal to $(-1)$. Thus, at this point ($t_x = 0$), the two images are completely anti-correlated.
+    \item As the shift starts to increase in either direction, the correlation coefficient also starts to become less negative. The increase is approximately linear.
+    \item The correlation is always negative in the given range of the shifts for the given image and it's negative.
+\end{itemize}
 
 
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{qmi_negative.jpg}
+    %\caption{Caption}
+    \label{q6ic}
+\end{figure}
 
-
-
-
+\subsubsection*{Comments:}
+\begin{itemize}
+    \item QMI essentially measures the ``dependance" of two random variables on each other. In our case, it is a measure of the mutual information contained between the 2 images.
+    \item In our case, the second image is the negative of the first, thus both of them contain the exact same information about each other at $t_x = 0.$ ($(255 - I_1 = I_2) \text{ and } (255-I_2) = I_1$)
+    \item As we increase the shift in either direction, the QMI values start to decrease, as when we are shifting an image, we are also ``deleting" information by blacking out the un-occupied pixels.
+    \item The rate of decrease of QMI is higher in this case as compared to the previous case.
+    \item Although the QMI values appear quite low at $t_x = \pm 10$, these are still higher than the previous case, where the maxima itself was about $0.046$. This is because even after deleting some information from the negative, there is still a lot of common information between the 2 images.
+\end{itemize}
 
 
 
@@ -391,15 +453,14 @@ MGF of Multinomial distribution of $\mathbf{X} = (X_1, \dots, X_k)$, where $\sum
 
 \begin{equation*}
     \begin{split}
-        \frac{\partial^2}{\partial t_i^2} \phi_{\mathbf{X}}(\mathbf{t}) &= n(n-1) \cdot (p_1 e^{t_1} + \cdots + p_k e^{t_k})^{n-2} \cdot (p_i e^{t_i}) + n \cdot (p_1 e^{t_1} + \cdots + p_k e^{t_k})^{n-1} \cdot (p_i e^{t_i}) \\
+        \frac{\partial^2}{\partial t_i^2} \phi_{\mathbf{X}}(\mathbf{t}) &= n(n-1) \cdot (p_1 e^{t_1} + \cdots + p_k e^{t_k})^{n-2} \cdot (p_i e^{t_i})^2 + n \cdot (p_1 e^{t_1} + \cdots + p_k e^{t_k})^{n-1} \cdot (p_i e^{t_i}) \\
         E(X_i^2) &= \frac{\partial^2}{\partial t_i^2} \phi_{\mathbf{X}}(\mathbf{t}) \bigg\rvert_{\mathbf{t} = \mathbf{0} = (0, \dots, 0)} \\
-            &= n(n-1) \cdot (p_1 + \cdots + p_k)^{n-2} \cdot p_i + n \cdot (p_1 + \cdots + p_k)^{n-1} \cdot p_i \\
-            &= n(n-1) \cdot p_i + n \cdot p_i \hspace{3em} (\sum_{n=1}^{k} p_i = 1) \\
-            &= n^2 \cdot p_i \\
+            &= n(n-1) \cdot (p_1 + \cdots + p_k)^{n-2} \cdot p_i^2 + n \cdot (p_1 + \cdots + p_k)^{n-1} \cdot p_i \\
+            &= n(n-1) \cdot p_i^2 + n \cdot p_i \hspace{3em} (\sum_{n=1}^{k} p_i = 1) \\
         Cov(X_i, X_i) &= Var(X_i) \\
             &= E(X_i^2) - E(X_i)^2 \\
-            &= n^2 \cdot p_i - (n \cdot p_i)^2 \\
-            &= n^2 \cdot p_i (1 - p_i) \\
+            &= n(n-1) \cdot p_i^2 + n \cdot p_i - (n \cdot p_i)^2 \\
+            &= n \cdot p_i (1 - p_i) \\
     \end{split}
 \end{equation*}
 
