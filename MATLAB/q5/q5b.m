@@ -2,11 +2,6 @@ clear;
 close all;
 clc;
 
-% the clt tells you what is the distribution of the average of n random
-% variables
-% we will vary n from 5 to some large value to demonstrate this
-% Note: make sure that you have enough ram on your machine to store a 6000
-% x 10000 array!
 for n=[5 10 20 50 100 200 500 1000 5000 10000]
     fig = figure('visible','off');
     
@@ -20,13 +15,16 @@ for n=[5 10 20 50 100 200 500 1000 5000 10000]
     X = Y;
     clear Y;
     
-    mu = mean(X);
-    sigma = std(X);
+    mu = 3; % Calculated in the report
+    sigma = 1.3^0.5; % Calculated in the report
     g = normcdf([1, 2, 3, 4, 5],mu,sigma);
     
     [f,x] = ecdf(X(1,:));
     plot(x,f); hold on; 
     plot([1, 2, 3, 4, 5], g);
-    fname = sprintf('b %d.png',n);
+    title(sprintf('CDF of X_{avg} with N=%d and CDF of Gaussian approx.', n));
+    ylabel('CDF(x)')
+    xlabel('x');
+    fname = sprintf('b_%d.png',n);
     saveas(fig,fname);
 end

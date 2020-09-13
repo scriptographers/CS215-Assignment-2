@@ -9,7 +9,8 @@
 \usepackage{enumitem}
 \usepackage[left=0.75in, right=0.75in, bottom=0.75in]{geometry}
 \usepackage{graphicx}
-\usepackage{float}
+% \usepackage{float}
+\usepackage{floatrow}
 
 \usepackage{sectsty}
 \sectionfont{\centering}
@@ -349,8 +350,62 @@ $\frac{d}{dt} ((-(1 + \delta) t \mu)) + \mu (e^t - 1)) = (\mu e^t - (1 + \delta)
 \section*{Question 5}
 \addcontentsline{toc}{section}{Question 5}
 \setcounter{equation}{0}
+\subsection*{Instructions for running the code:}
+\begin{itemize}
+    \item After extracting submitted file, look for a directory named \texttt{code}. 
+    \item Within this, the code for this question is contained in a directory named \texttt{q5}.
+    \item Run the file \texttt{q5a.m}, \texttt{q5b.m} and \texttt{q5c.m} for part (a), (b) and (c) respectively.
+    \item The plots can be found in \texttt{./plots/}
+    \item a\_*.png, b\_*.png and c.png are plots corresponding part (a), (b) and (c) respectively.
+\end{itemize}
 
+\subsection*{(a)}
+\begin{figure}[H]
+    \centering
+    \begin{floatrow}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{a_100.png}}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{a_1000.png}}
+    \end{floatrow}
+    \vspace{1em}
+    \begin{floatrow}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{a_10000.png}}
+    \end{floatrow}
+\end{figure}
 
+\subsection*{(b)}
+We also had to calculate the true mean $\mu$ and std. dev. $\sigma$ for getting the Gaussian curve.
+\begin{equation*}
+    \begin{split}
+        \mu = E(X) &= \sum_{i=1}^{5} i \cdot f_{X_{avg}}(X_{avg} = i) = 1*0.05 + 2*0.4 + 3*0.15 + 4*0.3 + 5*0.1 = 3 \\
+        \sigma^2 = Var(X) &= E((X-\mu)^2) = E((X-3)^2)= \sum_{i=1}^{5} (i - 3)^2 \cdot f_{X_{avg}}(X_{avg} = i) \\
+            &= 4*0.05 + 1*0.4 + 0*0.15 + 1*0.3 + 4*0.1 = 1.3 \\
+        \sigma &= \sqrt{1.3}
+    \end{split}
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \begin{floatrow}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{b_100.png}}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{b_1000.png}}
+    \end{floatrow}
+    \vspace{1em}
+    \begin{floatrow}
+        \ffigbox[0.4\textwidth]{}
+        {\includegraphics[height=0.4\textwidth]{b_10000.png}}
+    \end{floatrow}
+\end{figure}
+
+\subsection*{(c)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{c.png}
+\end{figure}
 
 
 
@@ -479,7 +534,7 @@ For $i \ne j$,
     \end{split}
 \end{equation*}
 
-The co-variance matrix $\mathbf{C}$ is given by:
+The co-variance matrix $\mathbf{C}$ of $\mathbf{X}$ is given by:
 \begin{equation*}
     \begin{split}
         C_{ii} &= n \cdot p_i (1 - p_i) \\
@@ -488,11 +543,5 @@ The co-variance matrix $\mathbf{C}$ is given by:
 \end{equation*}
 
 
-
-
-
-
-
-
-
 \end{document}
+

@@ -2,12 +2,7 @@ clear;
 close all;
 clc;
 
-% the clt tells you what is the distribution of the average of n random
-% variables
-% we will vary n from 5 to some large value to demonstrate this
-% Note: make sure that you have enough ram on your machine to store a 6000
-% x 10000 array!
-mad = [];
+mad = []; % I didn't pre-allocate as the size of mad is small. 
 for n=[5 10 20 50 100 200 500 1000 5000 10000]
     X = rand(1,n);
     Y = X;
@@ -19,16 +14,19 @@ for n=[5 10 20 50 100 200 500 1000 5000 10000]
     X = Y;
     clear Y;
     
-    mu = mean(X);
-    sigma = std(X);
+    mu = 3; % Calculated in part (b)
+    sigma = 1.3^0.5; % Calculated in part (b)
     
-    [f,x] = ecdf(X(1,:));
+    [f, x] = ecdf(X(1,:));
     g = normcdf(x,mu,sigma);
-
+    
     mad = [mad, max(abs(f-g))];
 end
 
 fig = figure('visible','off');
 plot([5 10 20 50 100 200 500 1000 5000 10000], mad)
+title('Maximum Absolute Deviation Vs N');
+xlabel('N');
+ylabel('MAD');
 fname = sprintf('c.png');
 saveas(fig,fname);
