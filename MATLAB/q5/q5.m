@@ -32,7 +32,7 @@ for N=[5 10 20 50 100 200 500 1000 5000 10000] % Looping over values of N
     histogram(Xavg,numbins); % Making histogram
     title(sprintf('Distribution of X_{avg} with N=%d', N)); % Title
     xlabel('x'); % X-axis Label
-    fname = sprintf('a_%d.png',N); % Filename
+    fname = sprintf('plots/a_%d.png',N); % Filename
     saveas(fig,fname); % Save the figure
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -41,10 +41,11 @@ for N=[5 10 20 50 100 200 500 1000 5000 10000] % Looping over values of N
     stairs(x,f); hold on; % Used stairs to plot the cdf
     x_values = linspace(min(x),max(x)); % Array to plot Gaussian approx.
     plot(x_values,normcdf(x_values,mu,sigma)); % Plot Gaussian approx.
-    title(sprintf('CDF of X_{avg} with N=%d & CDF of Gaussian approx.',N));
+    title(sprintf('Empirical CDF with N=%d & Gaussian CDF',N));
     ylabel('CDF(x)') % X-axis Label
     xlabel('x'); % Y-axis Label
-    fname = sprintf('b_%d.png',N); % Filename
+    legend('Empirical CDF', 'Gaussian CDF', 'Location','northwest');
+    fname = sprintf('plots/b_%d.png',N); % Filename
     saveas(fig,fname); % Save the figure
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -60,6 +61,6 @@ plot([5 10 20 50 100 200 500 1000 5000 10000], mad) % Plot MAD Vs N
 title('Maximum Absolute Deviation Vs N'); % Title
 xlabel('N'); % X-axis Label
 ylabel('MAD'); % Y-axis Label
-fname = sprintf('c.png'); % Filename
+fname = sprintf('plots/c.png'); % Filename
 saveas(fig,fname); % Save the figure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
