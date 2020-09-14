@@ -14,8 +14,8 @@ for n=[5 10 20 50 100 200 500 1000 5000 10000]
     X = Y;
     clear Y;
     
-    mu = 3; % Calculated in part (b)
-    sigma = 1.3^0.5; % Calculated in part (b)
+    mu = 3; % From in part (b)
+    sigma = 1.3^0.5; % From in part (b)
     
     [f, x] = ecdf(X(1,:));
     g = normcdf(x,mu,sigma);

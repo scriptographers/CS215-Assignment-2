@@ -15,13 +15,13 @@ for n=[5 10 20 50 100 200 500 1000 5000 10000]
     X = Y;
     clear Y;
     
-    mu = 3; % Calculated in the report
-    sigma = 1.3^0.5; % Calculated in the report
-    g = normcdf([1, 2, 3, 4, 5],mu,sigma);
+    mu = 3; % True mean calculated in the report
+    sigma = 1.3^0.5; % True std dev. calculated in the report
     
     [f,x] = ecdf(X(1,:));
-    plot(x,f); hold on; 
-    plot([1, 2, 3, 4, 5], g);
+    stairs(x,f); hold on; 
+    x_values = linspace(1,5);
+    plot(x_values,normcdf(x_values,mu,sigma));
     title(sprintf('CDF of X_{avg} with N=%d and CDF of Gaussian approx.', n));
     ylabel('CDF(x)')
     xlabel('x');
